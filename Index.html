@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KindView - Watch Ads, Feed Lives</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="monetag" content="500e8dee623359010360b833e404d339">
-    <script src="https://fpyf8.com/88/tag.min.js" data-zone="180653" async data-cfasync="false"></script>
+    <script>(function(s){s.dataset.zone='10096288',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <style>
         * {
             margin: 0;
@@ -581,6 +580,170 @@
             font-size: 1rem;
             color: var(--text-light);
         }
+
+        /* New Content Sections */
+        .story-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+            box-shadow: var(--shadow);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .story-icon {
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .story-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .story-content p {
+            color: var(--text-light);
+        }
+
+        .story-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .story-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-button:hover {
+            background: #3db8af;
+            transform: translateY(-2px);
+        }
+
+        .testimonial-section {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .faq-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .story-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -619,6 +782,15 @@
                 <h3>Transparency Promise</h3>
                 <p>We are committed to complete transparency. Every quarter, we publish detailed reports showing exactly how much we've earned from ads and where every rupee has been donated. You can track the impact of your engagement in real-time.</p>
                 
+                <div class="action-buttons">
+                    <button class="action-button" id="modalWatchAd">
+                        <i class="fas fa-play-circle"></i> Watch an Ad Now
+                    </button>
+                    <button class="action-button" id="modalLearnMore">
+                        <i class="fas fa-book"></i> Read Our Stories
+                    </button>
+                </div>
+                
                 <div class="ad-container">
                     <h3 class="ad-title">Ready to Make a Difference?</h3>
                     <p>Simply engage with the ads on this site. Every view counts!</p>
@@ -642,6 +814,7 @@
                 <div class="nav-links">
                     <a href="#home">Home</a>
                     <a href="#impact">Our Impact</a>
+                    <a href="#stories">Stories</a>
                     <a href="#goals">Goals</a>
                     <a href="#about" id="aboutLink">About</a>
                 </div>
@@ -741,6 +914,37 @@
             </div>
         </section>
 
+        <!-- Story Section -->
+        <section class="story-section" id="stories">
+            <div class="story-header">
+                <div class="story-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="story-content">
+                    <h3>Rahul's Story: From Hunger to Hope</h3>
+                    <p>How your ad views changed one child's life in rural India</p>
+                </div>
+            </div>
+            <div class="story-body">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Child receiving food">
+                </div>
+                <div class="story-text">
+                    <p>Rahul is a 9-year-old boy from a small village in Uttar Pradesh, India. His family struggled to provide even one meal a day, and Rahul often went to school hungry, unable to concentrate on his studies.</p>
+                    <p>Thanks to supporters like you watching ads on KindView, we were able to partner with a local organization to provide daily nutritious meals at Rahul's school. Now, he not only has the energy to focus in class but has become one of the top students in his grade.</p>
+                    <p>"I love coming to school now," Rahul says. "The food gives me strength to learn and play with my friends."</p>
+                    <div class="action-buttons">
+                        <button class="action-button story-ad-button">
+                            <i class="fas fa-ad"></i> Watch Ad to Help More
+                        </button>
+                        <button class="action-button">
+                            <i class="fas fa-share"></i> Share This Story
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Ad Container -->
         <div class="ad-container">
             <h3 class="ad-title">Watch Ads, Change Lives</h3>
@@ -755,6 +959,54 @@
                 <p><i class="fas fa-sync-alt"></i> Last updated: Just now</p>
             </div>
         </div>
+
+        <!-- Testimonial Section -->
+        <section class="testimonial-section">
+            <div class="section-title">
+                <h2>What Our Supporters Say</h2>
+                <p>Hear from people who are making a difference through KindView</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I was skeptical at first, but seeing the impact reports convinced me. Now I watch ads during my coffee break knowing I'm helping feed someone."</p>
+                    <p class="testimonial-author">- Priya S., Mumbai</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a student, I can't donate money, but I can definitely spare a few minutes to watch ads. It feels good to contribute in my own small way."</p>
+                    <p class="testimonial-author">- Rohan K., Delhi</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I've shared KindView with my entire office. We now have a 'KindView break' where we all watch ads together. It's become a team-building activity!"</p>
+                    <p class="testimonial-author">- Anjali M., Bangalore</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about KindView</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How exactly does watching ads help people?</div>
+                    <div class="faq-answer">When you watch ads on our platform, advertisers pay us for your attention. We then convert 98.2% of that revenue into donations that provide food, clean water, education, and other essential services to people in need.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Why do you keep 1.8% of the revenue?</div>
+                    <div class="faq-answer">The 1.8% covers our operational costs including server maintenance, website development, payment processing fees, and administrative expenses. This ensures the platform can continue operating and growing its impact.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How can I be sure the money is actually going to charity?</div>
+                    <div class="faq-answer">We're committed to complete transparency. We publish quarterly impact reports detailing exactly how much we've earned and where every donation has gone. You can view these reports on our website.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I choose which cause my ad views support?</div>
+                    <div class="faq-answer">Currently, donations are distributed across all our partner organizations based on need. However, we're working on a feature that will allow supporters to allocate their impact to specific causes.</div>
+                </div>
+            </div>
+        </section>
 
         <!-- Goals Section -->
         <section class="section" id="goals">
@@ -826,9 +1078,14 @@
         <div class="ad-container">
             <h3 class="ad-title">Together, We Can Make a Difference</h3>
             <p>Your simple act of watching ads on this site has the power to change lives. Share KindView with your friends and multiply your impact.</p>
-            <button class="ad-button" id="shareBtn">
-                <i class="fas fa-share-alt"></i> Share KindView
-            </button>
+            <div class="action-buttons" style="justify-content: center;">
+                <button class="action-button" id="finalWatchAd">
+                    <i class="fas fa-ad"></i> Watch Another Ad
+                </button>
+                <button class="action-button" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Share KindView
+                </button>
+            </div>
         </div>
 
         <!-- Footer -->
@@ -839,6 +1096,7 @@
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#impact">Our Impact</a>
+                    <a href="#stories">Stories</a>
                     <a href="#goals">Goals</a>
                     <a href="#about" id="aboutLinkFooter">About</a>
                     <a href="#">Transparency Report</a>
@@ -850,10 +1108,6 @@
             </div>
         </footer>
     </div>
-
-    <!-- Ad Script Integration -->
-    
-
 
     <script>
         // Initialize the app
@@ -879,6 +1133,29 @@
             const startHelping = document.getElementById('startHelping');
             const watchAdBtn = document.getElementById('watchAdBtn');
             const shareBtn = document.getElementById('shareBtn');
+            const modalWatchAd = document.getElementById('modalWatchAd');
+            const modalLearnMore = document.getElementById('modalLearnMore');
+            const storyAdButton = document.querySelector('.story-ad-button');
+            const finalWatchAd = document.getElementById('finalWatchAd');
+
+            // Function to trigger ad and show impact
+            function triggerAdAction() {
+                // In a real implementation, this would trigger the ad
+                // For now, we'll simulate an ad view
+                simulateAdView();
+                
+                // Show thank you message
+                const messages = [
+                    "Thank you! Your ad view provided a meal to someone in need.",
+                    "You're making a difference! Your view will help feed a family.",
+                    "Amazing! Because of you, someone will eat today.",
+                    "Your simple action just changed someone's life. Thank you!",
+                    "Because of viewers like you, we can continue our mission. Thank you!"
+                ];
+                
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                alert(randomMessage);
+            }
 
             // Open modal
             function openModal() {
@@ -896,17 +1173,24 @@
             aboutLinkFooter.addEventListener('click', openModal);
             startHelping.addEventListener('click', closeModalFunc);
             
-            // Watch ad button
-            watchAdBtn.addEventListener('click', function() {
-                alert('Thank you for watching an ad! Your view will help provide meals to those in need.');
-                // In a real implementation, this would trigger the ad
-                // For now, we'll simulate an ad view
-                simulateAdView();
+            // Watch ad buttons
+            watchAdBtn.addEventListener('click', triggerAdAction);
+            modalWatchAd.addEventListener('click', function() {
+                triggerAdAction();
+                closeModalFunc();
+            });
+            storyAdButton.addEventListener('click', triggerAdAction);
+            finalWatchAd.addEventListener('click', triggerAdAction);
+
+            // Learn more button
+            modalLearnMore.addEventListener('click', function() {
+                closeModalFunc();
+                document.getElementById('stories').scrollIntoView({ behavior: 'smooth' });
             });
 
             // Share button
             shareBtn.addEventListener('click', function() {
-                alert('Share KindView with your friends to multiply your impact!');
+                alert('Share KindView with your friends to multiply your impact! \n\n"Hey, I found this amazing website where watching ads helps feed people in need. Check it out: www.kindview.org"');
             });
 
             // Close modal when clicking outside
@@ -934,17 +1218,6 @@
                     currentUsers += 1;
                     usersElement.textContent = currentUsers.toLocaleString();
                 }
-                
-                // Show thank you message
-                const messages = [
-                    "Thank you! Your ad view provided a meal to someone in need.",
-                    "You're making a difference! Your view will help feed a family.",
-                    "Amazing! Because of you, someone will eat today.",
-                    "Your simple action just changed someone's life. Thank you!"
-                ];
-                
-                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                alert(randomMessage);
             }
 
             // Animate stats on page load
@@ -970,4 +1243,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
