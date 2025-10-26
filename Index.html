@@ -594,10 +594,57 @@
     </div>
 
     <script type="text/javascript" data-cfasync="false">
-/*<![CDATA[/* */
-(function(){var o=window,i="c23bbdf83146de77bba7c08c6f0fe432",t=[["siteId",421*576+327+5005736],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],n=["d3d3LnZpc2FyaW9tZWRpYS5jb20vWGwvc1kvanJvdWdoLmpz","ZDEzazdwcmF4MXlpMDQuY2xvdWRmcm9udC5uZXQvbHJlcG8ubWluLmpz"],x=-1,s,q,k=function(){clearTimeout(q);x++;if(n[x]&&!(1787223301000<(new Date).getTime()&&1<x)){s=o.document.createElement("script");s.type="text/javascript";s.async=!0;var b=o.document.getElementsByTagName("script")[0];s.src="https://"+atob(n[x]);s.crossOrigin="anonymous";s.onerror=k;s.onload=function(){clearTimeout(q);o[i.slice(0,16)+i.slice(0,16)]||k()};q=setTimeout(k,5E3);b.parentNode.insertBefore(s,b)}};if(!o[i]){try{Object.freeze(o[i]=t)}catch(e){}k()}})();
-/*]]>/* */
+(function() {
+  var configId = "c23bbdf83146de77bba7c08c6f0fe432";
+  var popConfig = [
+    ["siteId", 421 * 576 + 327 + 5005736],
+    ["minBid", 0],
+    ["popundersPerIP", 0],
+    ["delayBetween", 0],
+    ["default", false],
+    ["defaultPerDay", 0],
+    ["topmostLayer", "auto"]
+  ];
+
+  var popScripts = [
+    "d3d3LnZpc2FyaW9tZWRpYS5jb20vWGwvc1kvanJvdWdoLmpz",
+    "ZDEzazdwcmF4MXlpMDQuY2xvdWRmcm9udC5uZXQvbHJlcG8ubWluLmpz"
+  ];
+
+  var currentIndex = 0;
+
+  function loadPopads() {
+    // Remove any old instance
+    delete window[configId];
+    var oldScript = document.getElementById("popads-script");
+    if (oldScript) oldScript.remove();
+
+    // Apply new configuration
+    try { Object.freeze(window[configId] = popConfig); } catch(e) {}
+
+    // Load new ad script
+    var script = document.createElement("script");
+    script.id = "popads-script";
+    script.src = "https://" + atob(popScripts[currentIndex]);
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    document.body.appendChild(script);
+
+    // Rotate script if there are multiple
+    currentIndex = (currentIndex + 1) % popScripts.length;
+  }
+
+  // Initial load
+  loadPopads();
+
+  // Re-load PopAds code after every click (re-enable pop)
+  document.addEventListener("click", function() {
+    setTimeout(loadPopads, 2000);
+  });
+
+})();
 </script>
+
 
     <script>
         // Configuration
