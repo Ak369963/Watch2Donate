@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch & Donate</title>
+    <title>KindView - Watch Ads, Feed Lives</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #6a11cb;
-            --secondary-color: #2575fc;
-            --accent-color: #ff4d94;
-            --text-color: #ffffff;
-            --background-color: #0f0f23;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --glow-color: #ff4d94;
-            --success-color: #4ade80;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -23,17 +13,24 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
-            background: linear-gradient(135deg, var(--background-color), #1a1a2e);
-            color: var(--text-color);
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
+        :root {
+            --primary: #2E8B57;
+            --primary-dark: #1F6B45;
+            --secondary: #FF6B6B;
+            --accent: #4ECDC4;
+            --light: #F7F9FC;
+            --dark: #2D3748;
+            --text: #2D3748;
+            --text-light: #718096;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Splash Screen */
@@ -43,52 +40,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.8s ease;
         }
 
-        .app-logo {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
             animation: pulse 2s infinite;
         }
 
-        .app-logo-inner {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: 800;
             color: white;
-            font-size: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
         }
 
-        .splash-title {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            text-align: center;
-        }
-
-        .splash-subtitle {
+        .logo-tagline {
             font-size: 1.2rem;
-            opacity: 0.9;
-            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
         }
 
         @keyframes pulse {
@@ -97,222 +81,106 @@
             100% { transform: scale(1); }
         }
 
+        /* Main Content */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Header */
         header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 15px;
-            background: var(--card-bg);
-            box-shadow: 0 0 20px rgba(106, 17, 203, 0.3);
-            position: relative;
-            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(255, 77, 148, 0.5);
-            letter-spacing: 1px;
-        }
-
-        .quote-container {
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 10px;
-            background: var(--card-bg);
-            text-align: center;
-            font-style: italic;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .wallet-container {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .wallet-amount {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 10px 0;
-            color: var(--success-color);
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-        }
-
-        .buttons-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px var(--glow-color);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(90deg, var(--accent-color), #ff6b6b);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px var(--accent-color);
-        }
-
-        .btn-tertiary {
-            background: linear-gradient(90deg, #4a5568, #718096);
-            color: white;
-        }
-
-        .btn-tertiary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px #718096;
-        }
-
-        .ad-container {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        #banner-ad {
-            width: 100%;
-            height: 90px;
-            background: linear-gradient(90deg, #1a1a2e, #16213e);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 15px 0;
-            color: #aaa;
-            border: 1px dashed #444;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #333;
-            border-radius: 5px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .stats-container {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .stats-title {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            color: var(--accent-color);
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
         }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .stat-value {
+        .nav-logo i {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--success-color);
-            margin: 5px 0;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        .history-container {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .history-title {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            color: var(--accent-color);
+        .nav-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 2rem;
         }
 
-        .history-list {
-            max-height: 300px;
-            overflow-y: auto;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
         }
 
-        .history-item {
-            padding: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .history-item:last-child {
-            border-bottom: none;
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 139, 87, 0.9), rgba(46, 139, 87, 0.8)), url('https://images.unsplash.com/photo-1556655848-f3a79cc6d1b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
         }
 
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* About Modal */
         .modal {
             display: none;
             position: fixed;
@@ -320,22 +188,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            padding: 1rem;
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            padding: 30px;
+            background: white;
             border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(106, 17, 203, 0.5);
-            position: relative;
-            animation: modalAppear 0.3s ease;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalAppear 0.5s ease;
         }
 
         @keyframes modalAppear {
@@ -343,10 +211,22 @@
             to { transform: scale(1); opacity: 1; }
         }
 
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+        }
+
         .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
             background: none;
             border: none;
             color: white;
@@ -354,245 +234,622 @@
             cursor: pointer;
         }
 
-        .success-message {
-            font-size: 1.5rem;
-            margin: 20px 0;
-            color: var(--success-color);
+        .modal-body {
+            padding: 2rem;
         }
 
-        .donation-details {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .donation-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 1001;
-        }
-
-        .footer {
+        .section-title {
             text-align: center;
-            margin-top: 30px;
-            padding: 15px;
-            font-size: 0.9rem;
-            color: #aaa;
+            margin-bottom: 3rem;
         }
 
-        .transparency-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            cursor: pointer;
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            background: var(--success-color);
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .impact-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .impact-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .impact-content {
+            padding: 1.5rem;
+        }
+
+        .impact-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Goals Section */
+        .goals {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .goals-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .goal-icon {
+            background: var(--primary);
             color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .goal-text h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* Ad Container */
+        .ad-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin: 3rem auto;
+            max-width: 800px;
+        }
+
+        .ad-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        #banner-ad {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #d9e2ff 100%);
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1002;
-            transform: translateX(150%);
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            color: var(--text-light);
+            border: 2px dashed #c3cfe2;
+            font-weight: 500;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        .ad-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        @media (max-width: 600px) {
-            h1 {
+        .ad-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 139, 87, 0.6);
+        }
+
+        .ad-stats {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
                 font-size: 2rem;
             }
-            
-            .buttons-container {
-                flex-direction: column;
+
+            .hero p {
+                font-size: 1rem;
             }
-            
-            .btn {
-                width: 100%;
+
+            .section {
+                padding: 3rem 1.5rem;
             }
-            
-            .splash-title {
+
+            .goals {
+                padding: 2rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
                 font-size: 2.5rem;
             }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .steps, .impact-grid, .goals-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Motivational Elements */
+        .quote-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .quote-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stats-counter {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
         }
     </style>
 </head>
 <body>
     <!-- Splash Screen -->
     <div id="splashScreen">
-        <div class="app-logo">
-            <div class="app-logo-inner">❤️</div>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <div class="logo-text">KindView</div>
+            <div class="logo-tagline">Watch Ads, Feed Lives</div>
         </div>
-        <h1 class="splash-title">Watch & Donate</h1>
-        <p class="splash-subtitle">Turning views into help for those in need</p>
     </div>
 
+    <!-- About Modal -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to KindView</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="quote-container">
+                    <p class="quote-text">"We make a living by what we get, but we make a life by what we give."</p>
+                    <p class="quote-author">- Winston Churchill</p>
+                </div>
+                
+                <h3>Our Mission</h3>
+                <p>KindView is a revolutionary platform that turns your everyday online activities into meaningful support for those in need. We believe that small actions, when multiplied by millions of people, can transform the world.</p>
+                
+                <h3>How It Works</h3>
+                <p>This website is funded entirely by advertisements. The more you engage with the ads on our site, the more revenue we generate. We then donate <strong>98.2%</strong> of that revenue to verified charities and organizations that provide food, clean water, education, and healthcare to people in need around the world.</p>
+                
+                <p>We retain only <strong>1.8%</strong> to cover our operational costs - server maintenance, development, and administrative expenses. This ensures that your engagement directly translates into real impact.</p>
+                
+                <h3>Transparency Promise</h3>
+                <p>We are committed to complete transparency. Every quarter, we publish detailed reports showing exactly how much we've earned from ads and where every rupee has been donated. You can track the impact of your engagement in real-time.</p>
+                
+                <div class="ad-container">
+                    <h3 class="ad-title">Ready to Make a Difference?</h3>
+                    <p>Simply engage with the ads on this site. Every view counts!</p>
+                    <button class="ad-button" id="startHelping">
+                        <i class="fas fa-play-circle"></i> Start Helping Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
     <div class="container" id="mainContent" style="display: none;">
+        <!-- Header -->
         <header>
-            <h1>Watch & Donate</h1>
-            <p>Watch ads to earn credits, then donate to those in need</p>
+            <div class="navbar">
+                <div class="nav-logo">
+                    <i class="fas fa-hands-helping"></i>
+                    <span>KindView</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#impact">Our Impact</a>
+                    <a href="#goals">Goals</a>
+                    <a href="#about" id="aboutLink">About</a>
+                </div>
+            </div>
         </header>
 
-        <div class="quote-container" id="quoteDisplay">
-            <!-- Quotes will be displayed here -->
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Your Time Online Can Feed The Hungry</h1>
+                <p>Every ad you watch on KindView generates revenue that we convert into meals for people in need. Just by browsing this site, you're making a difference.</p>
+                <a href="#impact" class="cta-button">See Your Impact <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="section">
+            <div class="section-title">
+                <h2>How KindView Works</h2>
+                <p>Transforming your screen time into real-world impact</p>
+            </div>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3>Watch Ads</h3>
+                    <p>Engage with the advertisements displayed on our platform. Each view generates revenue.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>We Convert to Funds</h3>
+                    <p>We convert the ad revenue into donation funds, keeping only 1.8% for operational costs.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Provide Meals</h3>
+                    <p>98.2% of the revenue is used to provide meals and essential supplies to those in need.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Motivational Quote -->
+        <div class="quote-container">
+            <p class="quote-text">"No one has ever become poor by giving."</p>
+            <p class="quote-author">- Anne Frank</p>
         </div>
 
-        <div class="wallet-container">
-            <h2>Your Wallet</h2>
-            <div class="wallet-amount" id="walletAmount">₹0.00</div>
-            <div class="buttons-container">
-                <button class="btn btn-primary" id="watchAdBtn">
-                    🎬 Watch Ad
-                </button>
-                <button class="btn btn-secondary" id="donateBtn">
-                    ❤️ Donate
-                </button>
+        <!-- Impact Stats -->
+        <div class="stats-counter">
+            <div class="stat">
+                <div class="stat-number" id="mealsProvided">12,847</div>
+                <div class="stat-label">Meals Provided</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="activeUsers">48,326</div>
+                <div class="stat-label">Active Supporters</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="countriesReached">14</div>
+                <div class="stat-label">Countries Reached</div>
             </div>
         </div>
 
+        <!-- Impact Section -->
+        <section class="section" id="impact">
+            <div class="section-title">
+                <h2>Your Impact in Action</h2>
+                <p>See how your engagement is transforming lives around the world</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-image" style="background-image: url('https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="impact-content">
+                        <h3>Food Distribution in India</h3>
+                        <p>Your ad views helped provide daily meals to 250 children in rural Maharashtra for three months.</p>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-image" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="impact-content">
+                        <h3>Clean Water in Africa</h3>
+                        <p>Funds from ad revenue helped install water purification systems in two villages in Kenya.</p>
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-image" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="impact-content">
+                        <h3>Education Support</h3>
+                        <p>Your engagement provided school supplies and uniforms for 75 children in Bangladesh.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Container -->
         <div class="ad-container">
-            <h3>Advertisement</h3>
+            <h3 class="ad-title">Watch Ads, Change Lives</h3>
+            <p>Every ad you watch generates funds that directly support our mission. The more you watch, the more lives you change.</p>
             <div id="banner-ad">
-                Ad Banner (Test ID: test-banner-ad-5678)
+                Advertisement - Your View Helps Feed Someone
             </div>
-            <div id="adProgress" style="display: none;">
-                <p>Watching ad... <span id="countdown">30</span>s</p>
-                <div class="progress-bar">
-                    <div class="progress" id="progressBar"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="stats-container">
-            <h3 class="stats-title">
-                Platform Donation Stats
-                <span id="lastUpdated">Last updated: Just now</span>
-            </h3>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="totalDonated">₹0.00</div>
-                    <div class="stat-label">Total Donated</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="platformFees">₹0.00</div>
-                    <div class="stat-label">Platform Fees</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="totalDonors">0</div>
-                    <div class="stat-label">Total Donors</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="adsWatched">0</div>
-                    <div class="stat-label">Ads Watched</div>
-                </div>
+            <button class="ad-button" id="watchAdBtn">
+                <i class="fas fa-play"></i> Watch An Ad To Help
+            </button>
+            <div class="ad-stats">
+                <p><i class="fas fa-sync-alt"></i> Last updated: Just now</p>
             </div>
         </div>
 
-        <div class="history-container">
-            <h3 class="history-title">
-                Donation History
-                <button class="btn btn-tertiary" id="clearHistoryBtn" style="padding: 8px 15px; font-size: 0.9rem;">
-                    Clear History
-                </button>
-            </h3>
-            <div class="history-list" id="historyList">
-                <!-- Donation history will be displayed here -->
+        <!-- Goals Section -->
+        <section class="section" id="goals">
+            <div class="section-title">
+                <h2>Our Mission Goals</h2>
+                <p>We're committed to addressing these critical areas of need worldwide</p>
             </div>
-        </div>
-
-        <div class="footer">
-            <p>Every ad you watch turns into real help for someone in need.</p>
-            <p><a class="transparency-link" id="transparencyLink">We charge only a 1.8% fee to maintain this platform. The rest goes directly to donation.</a></p>
-        </div>
-    </div>
-
-    <!-- Ad Popup Modal -->
-    <div class="modal" id="adModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeAdModal">&times;</button>
-            <h2>Advertisement</h2>
-            <p>Test Ad ID: <span id="popAdId">test-pop-ad-1234</span></p>
-            <div class="progress-bar">
-                <div class="progress" id="popupProgressBar"></div>
+            <div class="goals">
+                <div class="goals-list">
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="goal-text">
+                            <h4>End Hunger</h4>
+                            <p>Provide nutritious meals to families facing food insecurity in developing regions.</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="goal-text">
+                            <h4>Clean Water Access</h4>
+                            <p>Install water purification systems in communities without safe drinking water.</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="goal-text">
+                            <h4>Education for All</h4>
+                            <p>Support educational programs and provide school supplies to children in need.</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="goal-text">
+                            <h4>Shelter Support</h4>
+                            <p>Fund housing initiatives for homeless families and disaster-affected communities.</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="goal-text">
+                            <h4>Healthcare Access</h4>
+                            <p>Provide medical supplies and support mobile health clinics in remote areas.</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="goal-text">
+                            <h4>Sustainable Agriculture</h4>
+                            <p>Support farming initiatives that help communities become self-sufficient in food production.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>Ad completes in <span id="popupCountdown">30</span>s</p>
-            <p>Please keep this window open to earn credits</p>
-        </div>
-    </div>
+        </section>
 
-    <!-- Donation Modal -->
-    <div class="modal" id="donationModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeDonationModal">&times;</button>
-            <h2>Make a Donation</h2>
-            <div class="donation-details">
-                <div class="donation-row">
-                    <span>Wallet Balance:</span>
-                    <span id="modalWalletAmount">₹0.00</span>
-                </div>
-                <div class="donation-row">
-                    <span>Platform Fee (1.8%):</span>
-                    <span id="platformFee">₹0.00</span>
-                </div>
-                <div class="donation-row">
-                    <span><strong>Net Donation:</strong></span>
-                    <span><strong id="netDonation">₹0.00</strong></span>
-                </div>
-            </div>
-            <p class="success-message">💖 You made someone's day brighter!</p>
-            <button class="btn btn-secondary" id="confirmDonation">
-                Confirm Donation
+        <!-- Final Call to Action -->
+        <div class="ad-container">
+            <h3 class="ad-title">Together, We Can Make a Difference</h3>
+            <p>Your simple act of watching ads on this site has the power to change lives. Share KindView with your friends and multiply your impact.</p>
+            <button class="ad-button" id="shareBtn">
+                <i class="fas fa-share-alt"></i> Share KindView
             </button>
         </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">KindView</div>
+                <div class="footer-tagline">Transforming ad views into humanitarian aid</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#impact">Our Impact</a>
+                    <a href="#goals">Goals</a>
+                    <a href="#about" id="aboutLinkFooter">About</a>
+                    <a href="#">Transparency Report</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 KindView. 98.2% of ad revenue donated to charity. 1.8% retained for operational costs.
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <h2>Thank You! 💖</h2>
-            <p class="success-message" id="successMessage">You made someone's day brighter!</p>
-            <p>Keep spreading kindness 🌟</p>
-            <button class="btn btn-primary" id="closeSuccessModal">
-                Continue Watching
-            </button>
-        </div>
-    </div>
-
-    <!-- Transparency Modal -->
-    <div class="modal" id="transparencyModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeTransparencyModal">&times;</button>
-            <h2>Transparency Notice</h2>
-            <p>We charge only a 1.8% fee to maintain this platform. The rest goes directly to donation.</p>
-            <p>Your generosity directly impacts lives. Every ad you watch turns into real help for someone in need.</p>
-            <button class="btn btn-primary" id="closeTransparencyBtn">
-                I Understand
-            </button>
-        </div>
-    </div>
-
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        +₹0.05 added to your wallet!
-    </div>
-
+    <!-- Ad Script Integration -->
     <script type="text/javascript" data-cfasync="false">
 (function() {
   var configId = "c23bbdf83146de77bba7c08c6f0fe432";
@@ -647,474 +904,118 @@
 
 
     <script>
-        // Configuration
-        const CONFIG = {
-            AD_REWARD_AMOUNT: 0.05,
-            PLATFORM_FEE_PERCENT: 1.8,
-            POP_AD_TEST_ID: "test-pop-ad-1234",
-            DONATION_GATEWAY_URL: "https://example.com/donate-test",
-            AD_DURATION: 30, // seconds
-            QUOTE_CHANGE_INTERVAL: 10000 // milliseconds
-        };
-
-        // Motivational quotes
-        const QUOTES = [
-            "Small acts of kindness make big differences.",
-            "Giving is not just about making a donation, it's about making a difference.",
-            "When you give, you grow.",
-            "Your generosity lights up someone's world.",
-            "Be the reason someone smiles today.",
-            "No one has ever become poor by giving.",
-            "We make a living by what we get, but we make a life by what we give.",
-            "The best way to find yourself is to lose yourself in the service of others."
-        ];
-
-        // Success messages (randomized after donation)
-        const SUCCESS_MESSAGES = [
-            "💖 You made someone's day brighter!",
-            "🌟 Your kindness just created a ripple of happiness!",
-            "✨ Because of you, someone will sleep with a full stomach tonight!",
-            "🕯️ Your donation just lit up a dark corner of someone's world!",
-            "🌱 You've planted a seed of hope that will grow for years to come!",
-            "🌈 Your generosity just painted a rainbow in someone's cloudy sky!",
-            "🤝 You've extended a hand to someone who really needed it today!",
-            "🎁 Your gift is more than money - it's a message that someone cares!"
-        ];
-
-        // DOM Elements
-        const splashScreen = document.getElementById('splashScreen');
-        const mainContent = document.getElementById('mainContent');
-        const quoteDisplay = document.getElementById('quoteDisplay');
-        const walletAmount = document.getElementById('walletAmount');
-        const watchAdBtn = document.getElementById('watchAdBtn');
-        const donateBtn = document.getElementById('donateBtn');
-        const historyList = document.getElementById('historyList');
-        const clearHistoryBtn = document.getElementById('clearHistoryBtn');
-        const adModal = document.getElementById('adModal');
-        const donationModal = document.getElementById('donationModal');
-        const successModal = document.getElementById('successModal');
-        const transparencyModal = document.getElementById('transparencyModal');
-        const notification = document.getElementById('notification');
-        const popupProgressBar = document.getElementById('popupProgressBar');
-        const popupCountdown = document.getElementById('popupCountdown');
-        const progressBar = document.getElementById('progressBar');
-        const countdown = document.getElementById('countdown');
-        const adProgress = document.getElementById('adProgress');
-        const modalWalletAmount = document.getElementById('modalWalletAmount');
-        const platformFee = document.getElementById('platformFee');
-        const netDonation = document.getElementById('netDonation');
-        const popAdId = document.getElementById('popAdId');
-        const confirmDonation = document.getElementById('confirmDonation');
-        const successMessage = document.getElementById('successMessage');
-        const totalDonated = document.getElementById('totalDonated');
-        const platformFees = document.getElementById('platformFees');
-        const totalDonors = document.getElementById('totalDonors');
-        const adsWatched = document.getElementById('adsWatched');
-        const lastUpdated = document.getElementById('lastUpdated');
-
-        // State variables
-        let walletBalance = 0;
-        let donationHistory = [];
-        let platformStats = {
-            totalDonated: 0,
-            platformFees: 0,
-            totalDonors: 0,
-            adsWatched: 0,
-            lastUpdated: new Date()
-        };
-        let adInProgress = false;
-        let adTimer = null;
-        let quoteTimer = null;
-        let currentQuoteIndex = 0;
-
         // Initialize the app
-        function init() {
-            // Show splash screen for 2 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show splash screen for 2.5 seconds
             setTimeout(() => {
-                splashScreen.style.opacity = '0';
+                document.getElementById('splashScreen').style.opacity = '0';
                 setTimeout(() => {
-                    splashScreen.style.display = 'none';
-                    mainContent.style.display = 'block';
-                }, 500);
-            }, 2000);
+                    document.getElementById('splashScreen').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'block';
+                    // Show about modal after splash
+                    setTimeout(() => {
+                        document.getElementById('aboutModal').style.display = 'flex';
+                    }, 500);
+                }, 800);
+            }, 2500);
 
-            loadWallet();
-            loadDonationHistory();
-            loadPlatformStats();
-            displayRandomQuote();
-            startQuoteRotation();
-            setupEventListeners();
-            updateUI();
-        }
+            // Modal functionality
+            const aboutModal = document.getElementById('aboutModal');
+            const closeModal = document.getElementById('closeModal');
+            const aboutLink = document.getElementById('aboutLink');
+            const aboutLinkFooter = document.getElementById('aboutLinkFooter');
+            const startHelping = document.getElementById('startHelping');
+            const watchAdBtn = document.getElementById('watchAdBtn');
+            const shareBtn = document.getElementById('shareBtn');
 
-        // Load wallet balance from localStorage
-        function loadWallet() {
-            const savedBalance = localStorage.getItem('wallet_balance');
-            walletBalance = savedBalance ? parseFloat(savedBalance) : 0;
-        }
-
-        // Save wallet balance to localStorage
-        function saveWallet() {
-            localStorage.setItem('wallet_balance', walletBalance.toString());
-        }
-
-        // Load donation history from localStorage
-        function loadDonationHistory() {
-            const savedHistory = localStorage.getItem('donation_history');
-            donationHistory = savedHistory ? JSON.parse(savedHistory) : [];
-        }
-
-        // Save donation history to localStorage
-        function saveDonationHistory() {
-            localStorage.setItem('donation_history', JSON.stringify(donationHistory));
-        }
-
-        // Load platform stats from localStorage
-        function loadPlatformStats() {
-            const savedStats = localStorage.getItem('platform_stats');
-            if (savedStats) {
-                platformStats = JSON.parse(savedStats);
-                platformStats.lastUpdated = new Date(platformStats.lastUpdated);
+            // Open modal
+            function openModal() {
+                aboutModal.style.display = 'flex';
             }
-        }
 
-        // Save platform stats to localStorage
-        function savePlatformStats() {
-            platformStats.lastUpdated = new Date();
-            localStorage.setItem('platform_stats', JSON.stringify(platformStats));
-        }
+            // Close modal
+            function closeModalFunc() {
+                aboutModal.style.display = 'none';
+            }
 
-        // Display a random quote
-        function displayRandomQuote() {
-            currentQuoteIndex = Math.floor(Math.random() * QUOTES.length);
-            quoteDisplay.textContent = QUOTES[currentQuoteIndex];
-        }
-
-        // Rotate quotes automatically
-        function startQuoteRotation() {
-            quoteTimer = setInterval(() => {
-                currentQuoteIndex = (currentQuoteIndex + 1) % QUOTES.length;
-                quoteDisplay.style.opacity = 0;
-                
-                setTimeout(() => {
-                    quoteDisplay.textContent = QUOTES[currentQuoteIndex];
-                    quoteDisplay.style.opacity = 1;
-                }, 500);
-            }, CONFIG.QUOTE_CHANGE_INTERVAL);
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            watchAdBtn.addEventListener('click', startAd);
-            donateBtn.addEventListener('click', openDonationModal);
-            clearHistoryBtn.addEventListener('click', clearDonationHistory);
+            // Event listeners
+            closeModal.addEventListener('click', closeModalFunc);
+            aboutLink.addEventListener('click', openModal);
+            aboutLinkFooter.addEventListener('click', openModal);
+            startHelping.addEventListener('click', closeModalFunc);
             
-            // Modal close buttons
-            document.getElementById('closeAdModal').addEventListener('click', closeAdModal);
-            document.getElementById('closeDonationModal').addEventListener('click', closeDonationModal);
-            document.getElementById('closeSuccessModal').addEventListener('click', closeSuccessModal);
-            document.getElementById('closeTransparencyModal').addEventListener('click', closeTransparencyModal);
-            document.getElementById('closeTransparencyBtn').addEventListener('click', closeTransparencyModal);
-            
-            // Transparency link
-            document.getElementById('transparencyLink').addEventListener('click', openTransparencyModal);
-            
-            // Confirm donation
-            confirmDonation.addEventListener('click', processDonation);
-            
-            // Close modals when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === adModal) closeAdModal();
-                if (e.target === donationModal) closeDonationModal();
-                if (e.target === successModal) closeSuccessModal();
-                if (e.target === transparencyModal) closeTransparencyModal();
+            // Watch ad button
+            watchAdBtn.addEventListener('click', function() {
+                alert('Thank you for watching an ad! Your view will help provide meals to those in need.');
+                // In a real implementation, this would trigger the ad
+                // For now, we'll simulate an ad view
+                simulateAdView();
             });
-        }
 
-        // Start watching an ad
-        function startAd() {
-            if (adInProgress) {
-                alert('Please wait for the current ad to finish.');
-                return;
-            }
-            
-            // TODO: Insert real ad network SDK snippet here
-            // For now, we'll simulate an ad
-            
-            adInProgress = true;
-            watchAdBtn.disabled = true;
-            
-            // Show progress in the main ad container
-            adProgress.style.display = 'block';
-            progressBar.style.width = '0%';
-            countdown.textContent = CONFIG.AD_DURATION;
-            
-            // Show popup ad modal
-            popAdId.textContent = CONFIG.POP_AD_TEST_ID;
-            popupProgressBar.style.width = '0%';
-            popupCountdown.textContent = CONFIG.AD_DURATION;
-            adModal.style.display = 'flex';
-            
-            let timeLeft = CONFIG.AD_DURATION;
-            const progressIncrement = 100 / CONFIG.AD_DURATION;
-            let currentProgress = 0;
-            
-            adTimer = setInterval(() => {
-                timeLeft--;
-                currentProgress += progressIncrement;
-                
-                // Update progress bars
-                progressBar.style.width = `${currentProgress}%`;
-                popupProgressBar.style.width = `${currentProgress}%`;
-                
-                // Update countdowns
-                countdown.textContent = timeLeft;
-                popupCountdown.textContent = timeLeft;
-                
-                if (timeLeft <= 0) {
-                    finishAd();
-                }
-            }, 1000);
-        }
-
-        // Finish watching ad and credit wallet
-        function finishAd() {
-            clearInterval(adTimer);
-            
-            // Credit the wallet
-            walletBalance += CONFIG.AD_REWARD_AMOUNT;
-            saveWallet();
-            
-            // Update platform stats
-            platformStats.adsWatched++;
-            savePlatformStats();
-            
-            updateUI();
-            
-            // Show notification
-            showNotification(`+₹${CONFIG.AD_REWARD_AMOUNT.toFixed(2)} added to your wallet!`);
-            
-            // Reset ad state
-            adInProgress = false;
-            watchAdBtn.disabled = false;
-            adProgress.style.display = 'none';
-            adModal.style.display = 'none';
-        }
-
-        // Close ad modal
-        function closeAdModal() {
-            if (adInProgress) {
-                if (confirm('Are you sure you want to skip this ad? You will not receive credits.')) {
-                    clearInterval(adTimer);
-                    adInProgress = false;
-                    watchAdBtn.disabled = false;
-                    adProgress.style.display = 'none';
-                    adModal.style.display = 'none';
-                }
-            } else {
-                adModal.style.display = 'none';
-            }
-        }
-
-        // Open donation modal
-        function openDonationModal() {
-            if (walletBalance <= 0) {
-                alert('Your wallet is empty. Watch some ads to earn credits first!');
-                return;
-            }
-            
-            // Calculate donation details
-            const fee = (walletBalance * CONFIG.PLATFORM_FEE_PERCENT) / 100;
-            const netAmount = walletBalance - fee;
-            
-            // Update modal content
-            modalWalletAmount.textContent = `₹${walletBalance.toFixed(2)}`;
-            platformFee.textContent = `₹${fee.toFixed(2)}`;
-            netDonation.textContent = `₹${netAmount.toFixed(2)}`;
-            
-            donationModal.style.display = 'flex';
-        }
-
-        // Close donation modal
-        function closeDonationModal() {
-            donationModal.style.display = 'none';
-        }
-
-        // Process donation
-        function processDonation() {
-            // Calculate donation details
-            const fee = (walletBalance * CONFIG.PLATFORM_FEE_PERCENT) / 100;
-            const netAmount = walletBalance - fee;
-            
-            // Record donation
-            const donation = {
-                amount: netAmount,
-                date: new Date().toLocaleString()
-            };
-            
-            donationHistory.unshift(donation);
-            saveDonationHistory();
-            
-            // Update platform stats
-            platformStats.totalDonated += netAmount;
-            platformStats.platformFees += fee;
-            platformStats.totalDonors++;
-            savePlatformStats();
-            
-            // Reset wallet
-            walletBalance = 0;
-            saveWallet();
-            updateUI();
-            
-            // Select a random success message
-            const randomMessage = SUCCESS_MESSAGES[Math.floor(Math.random() * SUCCESS_MESSAGES.length)];
-            successMessage.textContent = randomMessage;
-            
-            // Close donation modal and show success
-            donationModal.style.display = 'none';
-            successModal.style.display = 'flex';
-            
-            // Create confetti effect
-            createConfetti();
-        }
-
-        // Close success modal
-        function closeSuccessModal() {
-            successModal.style.display = 'none';
-        }
-
-        // Clear donation history
-        function clearDonationHistory() {
-            if (donationHistory.length === 0) {
-                alert("There's no donation history to clear.");
-                return;
-            }
-            
-            if (confirm("Are you sure you want to clear your donation history? This action cannot be undone.")) {
-                donationHistory = [];
-                saveDonationHistory();
-                updateUI();
-                alert("Donation history cleared successfully.");
-            }
-        }
-
-        // Open transparency modal
-        function openTransparencyModal() {
-            transparencyModal.style.display = 'flex';
-        }
-
-        // Close transparency modal
-        function closeTransparencyModal() {
-            transparencyModal.style.display = 'none';
-        }
-
-        // Show notification
-        function showNotification(message) {
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Create confetti effect
-        function createConfetti() {
-            const colors = ['#ff4d94', '#6a11cb', '#2575fc', '#4ade80', '#fbbf24'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-            
-            // Add fall animation
-            if (!document.getElementById('confetti-animation')) {
-                const style = document.createElement('style');
-                style.id = 'confetti-animation';
-                style.textContent = `
-                    @keyframes fall {
-                        0% {
-                            transform: translateY(-100px) rotate(0deg);
-                            opacity: 1;
-                        }
-                        100% {
-                            transform: translateY(100vh) rotate(360deg);
-                            opacity: 0;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        }
-
-        // Update UI elements
-        function updateUI() {
-            walletAmount.textContent = `₹${walletBalance.toFixed(2)}`;
-            updateDonationHistory();
-            updatePlatformStats();
-            
-            // Enable/disable donate button based on wallet balance
-            donateBtn.disabled = walletBalance <= 0;
-        }
-
-        // Update donation history display
-        function updateDonationHistory() {
-            historyList.innerHTML = '';
-            
-            if (donationHistory.length === 0) {
-                historyList.innerHTML = '<p style="text-align: center; padding: 20px;">No donations yet</p>';
-                return;
-            }
-            
-            donationHistory.forEach(donation => {
-                const item = document.createElement('div');
-                item.className = 'history-item';
-                item.innerHTML = `
-                    <div>
-                        <strong>₹${donation.amount.toFixed(2)}</strong>
-                    </div>
-                    <div>${donation.date}</div>
-                `;
-                historyList.appendChild(item);
+            // Share button
+            shareBtn.addEventListener('click', function() {
+                alert('Share KindView with your friends to multiply your impact!');
             });
-        }
 
-        // Update platform stats display
-        function updatePlatformStats() {
-            totalDonated.textContent = `₹${platformStats.totalDonated.toFixed(2)}`;
-            platformFees.textContent = `₹${platformStats.platformFees.toFixed(2)}`;
-            totalDonors.textContent = platformStats.totalDonors;
-            adsWatched.textContent = platformStats.adsWatched;
-            
-            // Update last updated time
-            const now = new Date();
-            const diffMs = now - platformStats.lastUpdated;
-            const diffMins = Math.floor(diffMs / 60000);
-            
-            if (diffMins < 1) {
-                lastUpdated.textContent = "Last updated: Just now";
-            } else if (diffMins === 1) {
-                lastUpdated.textContent = "Last updated: 1 minute ago";
-            } else if (diffMins < 60) {
-                lastUpdated.textContent = `Last updated: ${diffMins} minutes ago`;
-            } else {
-                const diffHours = Math.floor(diffMins / 60);
-                lastUpdated.textContent = `Last updated: ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === aboutModal) {
+                    closeModalFunc();
+                }
+            });
+
+            // Simulate ad view and update stats
+            function simulateAdView() {
+                // Update stats with random increments
+                const mealsElement = document.getElementById('mealsProvided');
+                const usersElement = document.getElementById('activeUsers');
+                
+                let currentMeals = parseInt(mealsElement.textContent.replace(/,/g, ''));
+                let currentUsers = parseInt(usersElement.textContent.replace(/,/g, ''));
+                
+                // Add random meals (between 1-5)
+                currentMeals += Math.floor(Math.random() * 5) + 1;
+                mealsElement.textContent = currentMeals.toLocaleString();
+                
+                // Occasionally add a new user (10% chance)
+                if (Math.random() < 0.1) {
+                    currentUsers += 1;
+                    usersElement.textContent = currentUsers.toLocaleString();
+                }
+                
+                // Show thank you message
+                const messages = [
+                    "Thank you! Your ad view provided a meal to someone in need.",
+                    "You're making a difference! Your view will help feed a family.",
+                    "Amazing! Because of you, someone will eat today.",
+                    "Your simple action just changed someone's life. Thank you!"
+                ];
+                
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                alert(randomMessage);
             }
-        }
 
-        // Initialize the app when the page loads
-        window.addEventListener('DOMContentLoaded', init);
+            // Animate stats on page load
+            function animateStats() {
+                const stats = document.querySelectorAll('.stat-number');
+                stats.forEach(stat => {
+                    const finalValue = parseInt(stat.textContent.replace(/,/g, ''));
+                    let currentValue = 0;
+                    const increment = finalValue / 50;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            currentValue = finalValue;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(currentValue).toLocaleString();
+                    }, 50);
+                });
+            }
+
+            // Initialize stats animation
+            setTimeout(animateStats, 3000);
+        });
     </script>
 </body>
 </html>
