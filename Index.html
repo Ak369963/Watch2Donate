@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KindView - Watch Ads, Feed Lives</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="monetag" content="500e8dee623359010360b833e404d339">
     <style>
         * {
             margin: 0;
@@ -850,57 +851,7 @@
     </div>
 
     <!-- Ad Script Integration -->
-    <script type="text/javascript" data-cfasync="false">
-(function() {
-  var configId = "c23bbdf83146de77bba7c08c6f0fe432";
-  var popConfig = [
-    ["siteId", 421 * 576 + 327 + 5005736],
-    ["minBid", 0],
-    ["popundersPerIP", 0],
-    ["delayBetween", 0],
-    ["default", false],
-    ["defaultPerDay", 0],
-    ["topmostLayer", "auto"]
-  ];
-
-  var popScripts = [
-    "d3d3LnZpc2FyaW9tZWRpYS5jb20vWGwvc1kvanJvdWdoLmpz",
-    "ZDEzazdwcmF4MXlpMDQuY2xvdWRmcm9udC5uZXQvbHJlcG8ubWluLmpz"
-  ];
-
-  var currentIndex = 0;
-
-  function loadPopads() {
-    // Remove any old instance
-    delete window[configId];
-    var oldScript = document.getElementById("popads-script");
-    if (oldScript) oldScript.remove();
-
-    // Apply new configuration
-    try { Object.freeze(window[configId] = popConfig); } catch(e) {}
-
-    // Load new ad script
-    var script = document.createElement("script");
-    script.id = "popads-script";
-    script.src = "https://" + atob(popScripts[currentIndex]);
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    document.body.appendChild(script);
-
-    // Rotate script if there are multiple
-    currentIndex = (currentIndex + 1) % popScripts.length;
-  }
-
-  // Initial load
-  loadPopads();
-
-  // Re-load PopAds code after every click (re-enable pop)
-  document.addEventListener("click", function() {
-    setTimeout(loadPopads, 2000);
-  });
-
-})();
-</script>
+    
 
 
     <script>
