@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KindView - Watch Ads, Feed Lives</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Monetag Ads-->
     <!--<script>(function(s){s.dataset.zone='10096288',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>-->
     <style>
         * {
@@ -1108,58 +1109,64 @@
             </div>
         </footer>
     </div>
-    <script type="text/javascript" data-cfasync="false">
+    <!-- PopAds -->
+    
+<script type="text/javascript" data-cfasync="false">
 (function() {
-  var configId = "c23bbdf83146de77bba7c08c6f0fe432";
-  var popConfig = [
-    ["siteId", 421 * 576 + 327 + 5005736],
+  var win = window;
+  var configKey = "c29978f89e60e17a5894d87a96f7eb61";
+  var config = [
+    ["siteId", 605 + 589 - 934 * 925 + 6112167],
     ["minBid", 0],
-    ["popundersPerIP", 0],
+    ["popundersPerIP", "0"],
     ["delayBetween", 0],
     ["default", false],
     ["defaultPerDay", 0],
     ["topmostLayer", "auto"]
   ];
-
-  var popScripts = [
-    "d3d3LnZpc2FyaW9tZWRpYS5jb20vWGwvc1kvanJvdWdoLmpz",
-    "ZDEzazdwcmF4MXlpMDQuY2xvdWRmcm9udC5uZXQvbHJlcG8ubWluLmpz"
+  var sources = [
+    "d3d3LnZpc2FyaW9tZWRpYS5jb20vUk0vem51Y2xlYXIubWluLmpz",
+    "ZDEzazdwcmF4MXlpMDQuY2xvdWRmcm9udC5uZXQvRS9NUGkvcW5hY2xfZmFjdG9yeS5taW4uY3Nz"
   ];
-
-  var currentIndex = 0;
+  var currentIndex = 0, timeout;
 
   function loadPopads() {
-    // Remove any old instance
-    delete window[configId];
-    var oldScript = document.getElementById("popads-script");
-    if (oldScript) oldScript.remove();
+    // Remove existing PopAds config and script
+    try { delete win[configKey]; } catch(e) {}
+    var old = document.getElementById("popads-script");
+    if (old) old.remove();
 
-    // Apply new configuration
-    try { Object.freeze(window[configId] = popConfig); } catch(e) {}
+    // Apply new config
+    try { Object.freeze(win[configKey] = config); } catch(e) {}
 
-    // Load new ad script
-    var script = document.createElement("script");
-    script.id = "popads-script";
-    script.src = "https://" + atob(popScripts[currentIndex]);
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    document.body.appendChild(script);
+    // Load PopAds script again
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.async = true;
+    s.id = "popads-script";
+    s.src = "https://" + atob(sources[currentIndex]);
+    s.crossOrigin = "anonymous";
+    s.onerror = loadPopads;
+    document.body.appendChild(s);
 
-    // Rotate script if there are multiple
-    currentIndex = (currentIndex + 1) % popScripts.length;
+    // Rotate sources (if multiple)
+    currentIndex = (currentIndex + 1) % sources.length;
   }
 
   // Initial load
   loadPopads();
 
-  // Re-load PopAds code after every click (re-enable pop)
-  document.addEventListener("click", function() {
-    setTimeout(loadPopads, 2000);
+  // Re-load PopAds whenever user interacts
+  ["click", "scroll", "keydown", "touchstart"].forEach(evt => {
+    document.addEventListener(evt, function() {
+      clearTimeout(timeout);
+      // Delay reload slightly to avoid spam reinit
+      timeout = setTimeout(loadPopads, 1500);
+    });
   });
-
 })();
 </script>
-
+<!-- Main Script-->
     <script>
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
